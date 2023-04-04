@@ -1,12 +1,16 @@
 const inquirer = require('inquirer');
 const fs = require('fs')
+// import { Triangle, Rectangle, Circle } from './lib/shapes.js'
+const Triangle = require('./lib/shapes.js');
+const Rectangle = require('./lib/shapes.js')
+const Circle = require('./lib/shapes.js')
 
 inquirer
   .prompt([
     {
         type: 'input',
         message: 'Enter up to three characters for your logo.',
-        name: 'initials'
+        name: 'text'
     },
     {
         type: 'input',
@@ -17,7 +21,7 @@ inquirer
         type: 'rawlist',
         message: 'Pick a shape!',
         name: 'shape',
-        choices: ['Triangle', 'Circle', 'Square',]
+        choices: ['Triangle', 'Circle', 'Rectangle',]
     },
     {
         type: 'input',
@@ -26,7 +30,8 @@ inquirer
     }
   ])
   .then((answers) => {
-    // Use user feedback for... whatever!!
+    console.log("got it")
+    logoGenerator(answers.text, answers.textColor, answers.shape, answers.shapeColor);
   })
   .catch((error) => {
     if (error.isTtyError) {
@@ -37,10 +42,32 @@ inquirer
   });
 
   const logoGenerator = function(text, textColor, shape, shapeColor){
-    let logo = `
+    console.log("start function");
+    if (shape == "Triangle"){
+      var userShape = new Triangle();
+      userShape.setColor(shapeColor);
+    }
+    else if (shape == "Rectangle"){
+      var userShape = new Rectangle();
+      userShape.setColor(shapeColor);
+    }
+    else if (shape == "Circle"){
+      var userShape = new Circle();
+      userShape.setColor(shapeColor);
+    }
+    console.log(userShape.render);
+    console.log(text);
+
+    var logo = `
     <?xml version="1.0" standalone="no"?>
-    <svg width="300" height="200" version="1.1" xmlns="LOGO">
-    
+    <svg width="300" height="200" version="1.1" xmlns="LOGO" style="background-color:white">
+    ${userShape.render}
+    <text x="108" y="120" font-size="50" fill="${textColor}">${text}</text>
     `
-    fs.writeFile('logo.svg', )
+    fs.writeFile('logo.svg', logo,(err)=> {
+      if (err){
+        console.error(err);
+      }
+    });
+    console.log("done");
   }

@@ -1,0 +1,4 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="300" height="200" version="1.1" xmlns="LOGO" style="background-color:white">
+<polygon points="50,50 250,50 250,150 50,150" fill="blue" />
+<text x="108" y="120" font-size="50" fill="purple">SVG</text>
