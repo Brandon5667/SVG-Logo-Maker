@@ -1,0 +1,6 @@
+
+    <?xml version="1.0" standalone="no"?>
+    <svg width="300" height="200" version="1.1" xmlns="LOGO" style="background-color:white">
+    <polygon points="150, 18 244, 182 56, 182" fill="green" />
+    <text x="108" y="120" font-size="50" fill="blue">SVG</text>
+    

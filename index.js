@@ -1,9 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs')
 // import { Triangle, Rectangle, Circle } from './lib/shapes.js'
-const Triangle = require('./lib/shapes.js');
-const Rectangle = require('./lib/shapes.js')
-const Circle = require('./lib/shapes.js')
+const {Triangle, Rectangle, Circle} = require('./lib/shapes');
 
 inquirer
   .prompt([
@@ -55,16 +53,16 @@ inquirer
       var userShape = new Circle();
       userShape.setColor(shapeColor);
     }
-    console.log(userShape.render);
+    console.log(userShape.render());
     console.log(text);
 
     var logo = `
     <?xml version="1.0" standalone="no"?>
     <svg width="300" height="200" version="1.1" xmlns="LOGO" style="background-color:white">
-    ${userShape.render}
+    ${userShape.render()}
     <text x="108" y="120" font-size="50" fill="${textColor}">${text}</text>
     `
-    fs.writeFile('logo.svg', logo,(err)=> {
+    fs.writeFile('./examples/logo.svg', logo,(err)=> {
       if (err){
         console.error(err);
       }
